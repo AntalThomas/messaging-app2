@@ -1,0 +1,80 @@
+h2 {
+    text-align: center;
+    color: white;
+}
+
+.visual {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.forms {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.inputsLogin, .inputsSignUp {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.loginInput, .signUpInput {
+    display: flex;
+    width: 93%;
+    height: 50px;
+    font-size: 1em;
+    background-color: rgb(58, 58, 60);
+    border: 0;
+    padding-left: 15px;
+    color: white;
+}
+
+.loginInput:first-of-type, .signUpInput:first-of-type{
+    border-radius: 15px 15px 0 0;
+}
+
+.loginInput:last-of-type, .signUpInput:last-of-type{
+    border-radius: 0 0 15px 15px;
+    margin-bottom: 2rem;
+}
+
+button {
+    width: 100%;
+    height: 50px;
+    border-radius: 15px;
+    border: 0;
+    background-color: rgb(86, 86, 86);
+    color: white;
+    cursor: pointer;
+}
+
+.backButton {
+    margin-top: 1rem;
+}
+
+a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+}
+
+img {
+    width: 50%;
+}
+
+span {
+    font-size: 1.3em;
+}

@@ -1,0 +1,16 @@
+<section class="nav2">
+    <div class="userPictureBig2" onClick="signOut()">
+        <img class="signOut" src="../../images/signOut.svg" alt="" />
+        <h3 class="userName">${state.userName[0]}</h3>
+    </div>
+    <input
+        onChange="searchFriends()"
+        class="searchChats"
+        type="text"
+        name="searchChats"
+    />
+</section>
+
+<section onClick="enterChat()" class="allFriends">
+    ${renderFriends()}
+</section>

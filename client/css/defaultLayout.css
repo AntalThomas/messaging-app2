@@ -1,0 +1,51 @@
+body {
+    display: flex;
+    justify-content: center;
+    padding-top: 2rem;
+}
+
+#iPhone {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    height: 700px;
+    
+    background-color: rgb(54, 54, 61);
+    border: 5px solid black;
+    border-radius: 60px;
+}
+
+#top-side {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 60px;
+    gap: 10px;
+    
+    background-color: rgb(23, 23, 23);
+    border-radius: 50px 50px 0 0;
+}
+
+.light, .microphone, .cam {
+    width: 20px;
+    height: 20px;
+   
+    background-color: grey;
+    border-radius: 10px;
+    border-radius: 1px solid black;
+}
+
+.microphone {
+    width: 80px;
+}
+
+.cam {
+    background-color: rgba(14, 16, 20);
+}
+
+#content {
+    padding: 0 50px;
+    display: flex;
+    flex-direction: column;
+}
