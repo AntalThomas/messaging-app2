@@ -7,3 +7,9 @@ CREATE TABLE users(
     email TEXT,
     password_digest TEXT
 );
+
+CREATE TABLE chats(
+    id SERIAL PRIMARY KEY,
+    userId TEXT,
+    friendId TEXT
+);

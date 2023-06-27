@@ -1,14 +1,13 @@
 function enterChat(event) {
     const chat = event.target.closest('.friend')
     const clickedId = chat.dataset.id
-    console.log(clickedId)
-
-    renderChat(clickedId)
+    renderAllChat(clickedId)
 }
 
 function renderAllFriends() {
     function renderFriends() {
         state.friendsList = state.friendsList.filter(friend => friend.id !== state.userId)
+        state.chatList = []
 
         return state.friendsList.map((friend) => `
             <div class="friend" data-id="${friend.id}">

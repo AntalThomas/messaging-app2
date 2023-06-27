@@ -5,11 +5,10 @@ const logger = require('./middlewares/logger.js')
 const sessions = require('./middlewares/sessions.js')
 
 // Controllers
-// const moviesController = require('./controllers/movies_controller.js')
 const sessionsController = require('./controllers/sessions_controller.js')
 const usersController = require('./controllers/users_controller.js')
 const getFriendsController = require('./controllers/getFriends_controller.js')
-// const wishlistController = require('./controllers/wishlist_controller.js')
+const chatController = require('./controllers/chat_controller.js')
 
 // Start and listen to the server
 const app = express()
@@ -22,8 +21,7 @@ app.use(express.json())
 app.use(sessions)
 
 // Controller response to user
-// app.use('/api/movies', moviesController)
 app.use('/api/sessions', sessionsController)
 app.use('/api/users', usersController)
 app.use('/api/getFriends', getFriendsController)
-// app.use('/api/wishlist', wishlistController)
+app.use('/api/chats', chatController)
