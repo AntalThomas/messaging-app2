@@ -1,27 +1,26 @@
 const db = require('../db/db')
-const User = require('./user')
 
 const Chat = {
     getAllChats: (userId, friendId) => {
         const sql = `
             SELECT * FROM chats
-            WHERE (userId = $1 AND friendId = $2)
-            OR (friendId = $1 AND userId = $2)
+            WHERE (sender = $1 AND receiver = $2)
+            OR (receiver = $1 AND sender = $2)
         `
 
         return db   
             .query(sql, [userId, friendId])
             .then(dbRes => dbRes.rows)
     },
-    insertIntoChat: (userId, friendId) => {
+    insertIntoChat: (userId, friendId, message) => {
         const sql = `
-            INSERT INTO chats(userId, friendId)
-            VALUES ($1, $2)
+            INSERT INTO chats(sender, receiver, message)
+            VALUES ($1, $2, $3)
             RETURNING *
         `
         return db
-            .query(sql, [userId, friendId])
-            .then(dbRes => dbRes.rows)
+            .query(sql, [userId, friendId, message])
+            .then(dbRes => dbRes.rows[0])
     }
 }
 

@@ -1,29 +1,16 @@
-async function updateUserChats(id) {
-    await fetch(`/api/chats/${id}`)
+async function renderAllChat(friendId) {
+    const data = { friendId: friendId}
+
+    await fetch(`/api/chats`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    })
         .then(res => res.json())
         .then(chats =>  {
             state.chatList = chats
         })
-}
 
-async function renderChat(friendId) {
-    await updateUserChats(friendId)
-
-    console.log(state.chatList)
-
-    if (state.chatList.length < 1) console.log("EMPTY")
-    else {
-        return state.chatList.map((chat) => `
-            <div class="userMessage">
-                <div class="userPictureSmall">${friendId}</div>
-                <div class="messageSent">${chat}</div>
-            </div>
-        `
-        ).join("")
-    }
-}
-
-function renderAllChat(friendId) {
     document.querySelector("#content").innerHTML = `
         <section class="nav">
             <button onClick="renderAllFriends()" class="arrowBack">
@@ -31,15 +18,62 @@ function renderAllChat(friendId) {
             </button>
 
             <div class="userPictureBig">A</div>
-            <h2>friend[name]</h2>
+            <h2>f${friendId}</h2>
         </section>
         <section class="conversation">${renderChat(friendId)}</section>
 
         <section class="userInput">
-            <form class="sendMessageForm" action="" onSubmit="sendMessage()">
-                <input class="sendMessageInput" type="text" name="userMessage"/>
-                <button class="sendMessageButton"><img src="../../images/send.svg" alt=""/></button>
+            <form class="sendMessageForm" action="" onSubmit="sendMessage(event)">
+                <input class="sendMessageInput" type="text" name="message"/>
+                <button class="sendMessageButton">
+                    <img src="../../images/send.svg" alt=""/>
+                </button>
             </form>
         </section>
+        <h1 class="toGetFriendId">${friendId}</h1>
     `
+}
+
+function sendMessage(event) {
+    event.preventDefault()
+    const data = Object.fromEntries(new FormData(event.target))
+    const friendId = document.querySelector('.toGetFriendId').textContent
+
+    if (!data.message) return
+    else {
+        fetch(`/api/chats/send/${friendId}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        })
+            .then(res => res.json())
+            .then(chat => {
+                state.chatList.push(chat)
+                renderAllChat(friendId)
+            })
+    }
+}
+
+function renderChat(friendId) {
+    if (state.chatList.length < 1) return
+    else {
+        return state.chatList.map((chat) => {
+            console.log(chat.receiver)
+            if (chat.receiver === friendId) {
+                return `
+                    <div class="userMessage">
+                        <div class="userPictureSmall receiver">${chat.id}</div>
+                        <div class="messageSent receiver">${chat.message}</div>
+                    </div>
+                `
+            } else {
+                return `
+                    <div class="userMessage">
+                        <div class="userPictureSmall sender">${chat.id}</div>
+                        <div class="messageSent sender">${chat.message}</div>
+                    </div>
+                `
+            }
+        }).join("")
+    }
 }

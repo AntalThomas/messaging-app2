@@ -11,7 +11,7 @@ function renderAllFriends() {
 
         return state.friendsList.map((friend) => `
             <div class="friend" data-id="${friend.id}">
-                <div class="userPictureSmall">${friend.name[0]}</div>
+                <div class="userPictureSmall2">${friend.name[0]}</div>
                 <div class="friendInfo">
                     <h2>${friend.name}</h2>
                     <p>MOST RECENT MESSAGE SENT HERE</p>

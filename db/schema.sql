@@ -10,6 +10,7 @@ CREATE TABLE users(
 
 CREATE TABLE chats(
     id SERIAL PRIMARY KEY,
-    userId TEXT,
-    friendId TEXT
+    sender TEXT,
+    receiver TEXT,
+    message TEXT
 );
