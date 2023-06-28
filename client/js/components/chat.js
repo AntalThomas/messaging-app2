@@ -1,6 +1,8 @@
 const socket = io('http://localhost:3001')
+// 'connection' message is sent
 socket.on('connection')
 
+// listens for 'message' from the backend then executes code when heard
 socket.on('message', data => {
     createSendMessageNode(data, "sender")
     scrollBottom()
@@ -74,6 +76,7 @@ async function sendMessage(event) {
 
     if (!data.message.trim()) event.target.value = ""
     else {
+        // sends out 'message' message to the backend
         socket.emit('message', data.message)
         
         await fetch(`/api/chats/send/${state.friendId}`, {

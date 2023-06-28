@@ -18,6 +18,7 @@ function renderAllFriends(userId) {
                 <div class="userPictureSmall2">${friend.name[0]}</div>
                 <div class="friendInfo">
                     <h2>${friend.name}</h2>
+                    <p>MOST RECENT MESSAGE HERE</p>
                 </div>
             </div>
         `

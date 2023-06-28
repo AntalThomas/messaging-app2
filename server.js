@@ -17,7 +17,7 @@ const io = require('socket.io')(server, { cors: { origin: "*" }})
 const port = process.env.PORT || 3001
 server.listen(port, () => { console.log(`listening on http://localhost:${port}`) })
 
-// Socket.io listen for connection
+// Socket.io listen for connection from front end
 io.on('connection', socket => {
     console.log('User connected', socket.id)
 

@@ -2,7 +2,7 @@ function renderSignUp() {
     document.querySelector('#content').innerHTML = `
         <div class="visual">
             <img src="../../images/bubble.svg" alt="" />
-            <h2>Create your account for<br/><span>Messaging App</span><br/>by Blake Varbai-Heward</h2>
+            <h3>Create your account for<br/><span>Messaging App</span><br/>by Blake Varbai-Heward</h3>
         </div>
 
         <div class="forms">
