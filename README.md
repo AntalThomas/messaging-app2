@@ -1,12 +1,25 @@
 # messaging-app2
 
+# Technology/Modules Used
+- HTML/CSS
+- Javascript
+- Express
+- Node.js
+- Socket.io
+- PSQL
+- Render
+
 # Bugs
 Currently when a user first creates their account the state isn't updated until they login and out again.
 If no chats are found "undefined" is shown on the screen. ✅
+User name is not shown when you go inside a chat or on messages sent.
+Sockets haven't been set up so messaging isn't in realtime.
+If you reload the page the user is logged out.
+Sometimes all the messages between 2 users are being retrieved by the SQL command.
 
 # Struggles
-If I could redo it again I would prefer to not use React just yet. I am just not experienced enough with it. If I just went with a SPA just using NodeJS and Express I would've had a smoother development experience.
-User authentication and use of async/await functions was a massive issue for me early on.
+If I could redo it again I would prefer to not use React. I am just not experienced enough with it. If I just went with a SPA just using NodeJS and Express I would've had a smoother development experience.
+User authentication and use of async/await functions was a massive issue for me early on. *Before I changed completely*
 
 I struggled so much I decided to start again and just recreate the app as an SPA without React.
 

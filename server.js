@@ -12,8 +12,20 @@ const chatController = require('./controllers/chat_controller.js')
 
 // Start and listen to the server
 const app = express()
-const port = process.env.PORT || 3001;
-app.listen(port, () => console.log(`listening on http://localhost:${port}`))
+const server = require('http').createServer(app)
+const io = require('socket.io')(server, { cors: { origin: "*" }})
+const port = process.env.PORT || 3001
+server.listen(port, () => { console.log(`listening on http://localhost:${port}`) })
+
+// Socket.io listen for connection
+io.on('connection', socket => {
+    console.log('User connected', socket.id)
+
+    // Socket.io listen for 'message' to be emit
+    socket.on('message', (data) => {
+        socket.broadcast.emit('message', data)
+    })
+})
 
 app.use(logger)// Log request info to terminal
 app.use(express.static('client')) // Send back SPA

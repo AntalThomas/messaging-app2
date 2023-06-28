@@ -2,6 +2,7 @@ let state = {
     userEmail: null,
     userName: null,
     userId: null,
+    friendId: null,
     friendsList: [],
     chatList: []
 }

@@ -7,6 +7,7 @@ function enterChat(event) {
 
 function renderAllFriends(userId) {
     state.userId = userId
+    state.friendId = null
 
     function renderFriends() {
         state.friendsList = state.friendsList.filter(friend => friend.id !== state.userId)
