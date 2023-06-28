@@ -55,7 +55,7 @@ function sendMessage(event) {
 }
 
 function renderChat(friendId) {
-    if (state.chatList.length < 1) return
+    if (state.chatList.length < 1) return `<div class="noMessage">Say something to your friend</div>`
     else {
         return state.chatList.map((chat) => {
             if (chat.receiver === friendId) {
