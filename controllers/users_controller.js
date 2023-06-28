@@ -26,8 +26,16 @@ router.post("/", (req, res) => {
     const passwordDigest = bcrypt.hashSync(password, bcrypt.genSaltSync(12), null)
 
     User
-        .create(name, email, passwordDigest)
-        .then(email => res.json(email))
+        .findByEmail(email)
+        .then(user => {
+            if (user === undefined) {
+                User
+                    .create(name, email, passwordDigest)
+                    .then(email => res.json(email))
+            } else {
+                res.status(400).json({ error: "Email already in use!" })
+            }
+        })
 })
 
 module.exports = router

@@ -4,7 +4,10 @@ function enterChat(event) {
     renderAllChat(clickedId)
 }
 
-function renderAllFriends() {
+function renderAllFriends(userId) {
+    state.userId = userId
+    console.log(state.userId, "RENDER ALL FRIENDS")
+    
     function renderFriends() {
         state.friendsList = state.friendsList.filter(friend => friend.id !== state.userId)
         state.chatList = []
@@ -25,7 +28,6 @@ function renderAllFriends() {
         <section class="nav2">
             <div class="userPictureBig2" onClick="signOut()">
                 <img class="signOut" src="../../images/signOut.svg" alt="" />
-                <h3 class="userName">${state.userName[0]}</h3>
             </div>
             <input
                 onChange="searchFriends()"

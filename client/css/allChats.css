@@ -15,19 +15,13 @@
     cursor: pointer;
 }
 
-.userName:hover {
-    opacity: 0%;;
-}
-
 .signOut {
-    opacity: 0%;
-    position: absolute;
     width: 40px;
     height: 40px;
 }
 
-.signOut:hover {
-    opacity: 100%;
+.userPictureBig2:hover {
+    background-color: gray;
 }
 
 .nav2 {

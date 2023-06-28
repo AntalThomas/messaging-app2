@@ -1,5 +1,8 @@
 # messaging-app2
 
+# Bugs
+Currently when a user first creates their account the state isn't updated until they login and out again.
+If no chats are found "undefined" is shown on the screen.
 
 # Struggles
 If I could redo it again I would prefer to not use React just yet. I am just not experienced enough with it. If I just went with a SPA just using NodeJS and Express I would've had a smoother development experience.

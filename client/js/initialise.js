@@ -6,7 +6,6 @@ let state = {
     chatList: []
 }
 
-
 function renderLogin() {
     document.querySelector('#content').innerHTML =
     `

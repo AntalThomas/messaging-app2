@@ -23,17 +23,26 @@ function renderSignUp() {
     `
 }
 
-function signUp(event) {
+async function signUp(event) {
     event.preventDefault()
     const form = event.target
     const data =  Object.fromEntries(new FormData(form))
 
-    fetch('/api/users', {
+    await fetch('/api/users', {
         method: 'POST',
-        headers: {'Content-Type': 'application/json'},
+        headers: { 'Content-Type' : 'application/json' },
         body: JSON.stringify(data)
     })
         .then(res => res.json())
-        .then(email => state.loggedInUser = email)
-        .then(() => renderMovieList())
+        .then(res => {
+            if(res.error) {
+                renderSignUp()
+                renderError(res.error)
+            } else {
+                console.log(res)
+                state.userEmail = res.email
+                state.userName = res.name
+                renderAllFriends(res.id)
+            }
+        })
 }

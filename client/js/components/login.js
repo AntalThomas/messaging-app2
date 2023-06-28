@@ -9,17 +9,17 @@ async function login(event) {
     })
         .then(res => res.json())
         .then(res => {
+            console.log(res, "log in")
+
             if(res.error) {
                 renderLogin()
                 renderError(res.error)
             } else {
                 state.userEmail = res.email
                 state.userName = res.name
-                state.userId = res.id
+                renderAllFriends(res.id)
             }
         })
-
-    renderAllFriends()
 }
 
 function renderError(errorMessage) {

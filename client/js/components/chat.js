@@ -1,5 +1,5 @@
 async function renderAllChat(friendId) {
-    const data = { friendId: friendId}
+    const data = { friendId: friendId }
 
     await fetch(`/api/chats`, {
         method: 'POST',
@@ -17,8 +17,8 @@ async function renderAllChat(friendId) {
                 <img class="arrowBackImg" src="../../images/arrowBack.svg" alt=""/>
             </button>
 
-            <div class="userPictureBig">A</div>
-            <h2>f${friendId}</h2>
+            <div class="userPictureBig">${friendId}</div>
+            <h2>${friendId}</h2>
         </section>
         <section class="conversation">${renderChat(friendId)}</section>
 
@@ -39,7 +39,7 @@ function sendMessage(event) {
     const data = Object.fromEntries(new FormData(event.target))
     const friendId = document.querySelector('.toGetFriendId').textContent
 
-    if (!data.message) return
+    if (!data.message.trim()) friendId = ""
     else {
         fetch(`/api/chats/send/${friendId}`, {
             method: 'POST',
@@ -58,7 +58,6 @@ function renderChat(friendId) {
     if (state.chatList.length < 1) return
     else {
         return state.chatList.map((chat) => {
-            console.log(chat.receiver)
             if (chat.receiver === friendId) {
                 return `
                     <div class="userMessage">
