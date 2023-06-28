@@ -9,8 +9,8 @@ const Chat = {
         `
 
         return db   
-            .query(sql, [userId, friendId])
-            .then(dbRes => dbRes.rows)
+        .query(sql, [userId, friendId])
+        .then(dbRes => dbRes.rows)
     },
     insertIntoChat: (userId, friendId, message) => {
         const sql = `
@@ -19,8 +19,8 @@ const Chat = {
             RETURNING *
         `
         return db
-            .query(sql, [userId, friendId, message])
-            .then(dbRes => dbRes.rows[0])
+        .query(sql, [userId, friendId, message])
+        .then(dbRes => dbRes.rows[0])
     }
 }
 

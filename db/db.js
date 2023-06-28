@@ -13,9 +13,7 @@ if (process.env.DATABASE_URL) {
             database: localDbName,
             password: process.env.DEV_DB_PASSWORD
         })
-    } else {
-        db = new pg.Pool({ database: localDbName })
-    }
+    } else db = new pg.Pool({ database: localDbName })
 }
 
 module.exports = db

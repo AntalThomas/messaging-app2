@@ -8,8 +8,8 @@ const User = {
         `
 
         return db   
-            .query(sql, [id])
-            .then(dbRes => dbRes.rows[0].email)
+        .query(sql, [id])
+        .then(dbRes => dbRes.rows[0].email)
     },
     findByEmail:  email => {
         const sql = `
@@ -18,8 +18,8 @@ const User = {
         `
 
         return db
-            .query(sql, [email])
-            .then(dbRes => dbRes.rows[0])
+        .query(sql, [email])
+        .then(dbRes => dbRes.rows[0])
     },
     create: (name, email, passwordDigest) => {
         const sqlInsert = `
@@ -29,8 +29,8 @@ const User = {
         `
 
         return db
-            .query(sqlInsert, [name, email, passwordDigest])
-            .then(dbRes => dbRes.rows[0])
+        .query(sqlInsert, [name, email, passwordDigest])
+        .then(dbRes => dbRes.rows[0])
     },
     selectAllUsers: () => {
         const sql = `
@@ -38,8 +38,8 @@ const User = {
         `
 
         return db
-            .query(sql)
-            .then(dbRes => dbRes.rows)
+        .query(sql)
+        .then(dbRes => dbRes.rows)
     }
 }
 

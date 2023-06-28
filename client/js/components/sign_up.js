@@ -33,16 +33,17 @@ async function signUp(event) {
         headers: { 'Content-Type' : 'application/json' },
         body: JSON.stringify(data)
     })
-        .then(res => res.json())
-        .then(res => {
-            if(res.error) {
-                renderSignUp()
-                renderError(res.error)
-            } else {
-                console.log(res)
-                state.userEmail = res.email
-                state.userName = res.name
-                renderAllFriends(res.id)
-            }
-        })
+    .then(res => res.json())
+    .then(res => {
+        if(res.error) {
+            renderSignUp()
+            renderError(res.error)
+        } else {
+            console.log(res)
+            state.userEmail = res.email
+            state.userName = res.name
+            
+            renderAllFriends(res.id)
+        }
+    })
 }

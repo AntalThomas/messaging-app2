@@ -6,10 +6,10 @@ async function renderAllChat(friendId) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
     })
-        .then(res => res.json())
-        .then(chats =>  {
-            state.chatList = chats
-        })
+    .then(res => res.json())
+    .then(chats =>  {
+        state.chatList = chats
+    })
 
     document.querySelector("#content").innerHTML = `
         <section class="nav">
@@ -46,17 +46,18 @@ function sendMessage(event) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
         })
-            .then(res => res.json())
-            .then(chat => {
-                state.chatList.push(chat)
-                renderAllChat(friendId)
-            })
+        .then(res => res.json())
+        .then(chat => {
+            state.chatList.push(chat)
+            renderAllChat(friendId)
+        })
     }
 }
 
 function renderChat(friendId) {
-    if (state.chatList.length < 1) return `<div class="noMessage">Say something to your friend</div>`
-    else {
+    if (state.chatList.length < 1) {
+        return `<div class="noMessage">Say something to your friend</div>`
+    } else {
         return state.chatList.map((chat) => {
             if (chat.receiver === friendId) {
                 return `

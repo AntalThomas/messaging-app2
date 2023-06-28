@@ -10,7 +10,7 @@ function renderLogin() {
     document.querySelector('#content').innerHTML =
     `
         <div class="visual">
-            <img src="../../images/bubble.svg" alt="" />
+            <img src="../../images/bubble.svg" alt=""/>
             <h2>Welcome to <br/><span>Messaging App</span><br/> by Blake Varbai-Heward</h2>
         </div>
             
@@ -32,9 +32,9 @@ function renderLogin() {
 }
 
 fetch("/api/getFriends")
-    .then(res => res.json())
-    .then(users =>  {
-        state.friendsList = users
-    })
+.then(res => res.json())
+.then(users =>  {
+    state.friendsList = users
+})
 
 renderLogin()

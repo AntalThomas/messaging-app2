@@ -9,23 +9,23 @@ router.post('/', (req, res) => {
     User
         .findByEmail(email)
         .then(user => {
-            console.log(user)
             if (user === undefined) {
-                res.status(400).json({ error: "email and/or password is incorrect"})
+                res.status(400).json({ error: "email or password is incorrect"})
             } else {
                 const isValidPassword = bcrypt.compareSync(password, user.password_digest)
 
-                    if (user && isValidPassword) {
-                        req.session.userId = user.id
-                        res.json({email: user.email, name: user.name, id: user.id})
-                        console.log(`${user.name} signed in.`)
-                    }
+                if (user && isValidPassword) {
+                    req.session.userId = user.id
+                    res.json({email: user.email, name: user.name, id: user.id})
+                    console.log(`${user.name} signed in.`)
+                }
             }
         })
 })
 
 router.get('/', (req, res) => {
     const userId = req.session.userId
+
     if (userId) {
         User
             .findById(userId)

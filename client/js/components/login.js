@@ -7,19 +7,18 @@ async function login(event) {
         headers: { 'Content-Type' : 'application/json' },
         body: JSON.stringify(data)
     })
-        .then(res => res.json())
-        .then(res => {
-            console.log(res, "log in")
-
-            if(res.error) {
-                renderLogin()
-                renderError(res.error)
-            } else {
-                state.userEmail = res.email
-                state.userName = res.name
-                renderAllFriends(res.id)
-            }
-        })
+    .then(res => res.json())
+    .then(res => {
+        if(res.error) {
+            renderLogin()
+            renderError(res.error)
+        } else {
+            state.userEmail = res.email
+            state.userName = res.name
+            
+            renderAllFriends(res.id)
+        }
+    })
 }
 
 function renderError(errorMessage) {

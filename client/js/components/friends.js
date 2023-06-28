@@ -1,12 +1,12 @@
 function enterChat(event) {
     const chat = event.target.closest('.friend')
     const clickedId = chat.dataset.id
+
     renderAllChat(clickedId)
 }
 
 function renderAllFriends(userId) {
     state.userId = userId
-    console.log(state.userId, "RENDER ALL FRIENDS")
     
     function renderFriends() {
         state.friendsList = state.friendsList.filter(friend => friend.id !== state.userId)
