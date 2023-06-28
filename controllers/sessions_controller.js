@@ -7,20 +7,20 @@ router.post('/', (req, res) => {
     const { email, password } = req.body
 
     User
-        .findByEmail(email)
-        .then(user => {
-            if (user === undefined) {
-                res.status(400).json({ error: "email or password is incorrect"})
-            } else {
-                const isValidPassword = bcrypt.compareSync(password, user.password_digest)
+    .findByEmail(email)
+    .then(user => {
+        if (user === undefined) {
+            res.status(400).json({ error: "email or password is incorrect"})
+        } else {
+            const isValidPassword = bcrypt.compareSync(password, user.password_digest)
 
-                if (user && isValidPassword) {
-                    req.session.userId = user.id
-                    res.json({email: user.email, name: user.name, id: user.id})
-                    console.log(`${user.name} signed in.`)
-                }
+            if (user && isValidPassword) {
+                req.session.userId = user.id
+                res.json({email: user.email, name: user.name, id: user.id})
+                console.log(`${user.name} signed in.`)
             }
-        })
+        }
+    })
 })
 
 router.get('/', (req, res) => {
@@ -28,8 +28,8 @@ router.get('/', (req, res) => {
 
     if (userId) {
         User
-            .findById(userId)
-            .then(email => res.json({ result: 'successful', email: email }))
+        .findById(userId)
+        .then(email => res.json({ result: 'successful', email: email }))
     } else {
         res.json({})
     }
