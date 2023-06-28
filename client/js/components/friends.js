@@ -7,7 +7,7 @@ function enterChat(event) {
 
 function renderAllFriends(userId) {
     state.userId = userId
-    
+
     function renderFriends() {
         state.friendsList = state.friendsList.filter(friend => friend.id !== state.userId)
         state.chatList = []
@@ -17,7 +17,6 @@ function renderAllFriends(userId) {
                 <div class="userPictureSmall2">${friend.name[0]}</div>
                 <div class="friendInfo">
                     <h2>${friend.name}</h2>
-                    <p>MOST RECENT MESSAGE SENT HERE</p>
                 </div>
             </div>
         `
@@ -30,10 +29,9 @@ function renderAllFriends(userId) {
                 <img class="signOut" src="../../images/signOut.svg" alt="" />
             </div>
             <input
-                onChange="searchFriends()"
+                onInput="searchFriends(event)"
                 class="searchChats"
-                type="text"
-                name="searchChats"
+                placeholder="Search by name"
             />
         </section>
 
@@ -41,4 +39,30 @@ function renderAllFriends(userId) {
             ${renderFriends()}
         </section>
     `
+}
+
+function searchFriends(event) {
+    event.preventDefault()
+    const filterInput = document.querySelector('.searchChats').value.trim().toLowerCase()
+    state.filteredFriends = []
+
+    for (let i = 0; i < state.friendsList.length; i++) {
+        if (state.friendsList[i].name.toLowerCase().includes(filterInput)) {
+            state.filteredFriends.push(state.friendsList[i])
+        }
+    }
+
+    renderFilteredFriends()
+}
+
+function renderFilteredFriends() {
+    document.querySelector(".allFriends").innerHTML = state.filteredFriends.map(friend => `
+            <div class="friend" data-id="${friend.id}">
+                <div class="userPictureSmall2">${friend.name[0]}</div>
+                <div class="friendInfo">
+                    <h2>${friend.name}</h2>
+                </div>
+            </div>
+     `
+    ).join("")
 }

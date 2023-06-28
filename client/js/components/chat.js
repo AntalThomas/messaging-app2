@@ -34,14 +34,14 @@ async function renderAllChat(friendId) {
     `
 }
 
-function sendMessage(event) {
+async function sendMessage(event) {
     event.preventDefault()
     const data = Object.fromEntries(new FormData(event.target))
     const friendId = document.querySelector('.toGetFriendId').textContent
 
     if (!data.message.trim()) friendId = ""
     else {
-        fetch(`/api/chats/send/${friendId}`, {
+        await fetch(`/api/chats/send/${friendId}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
