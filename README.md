@@ -35,12 +35,19 @@ Here is the previous project: https://github.com/AntalThomas/messaging-app
 
 # Bugs
 Currently when a user first creates their account the state isn't updated until they login and out again.
+
 If no chats are found "undefined" is shown on the screen. ✅
+
 User name is not shown when you go inside a chat or on messages sent.
+
 Sockets haven't been set up so messaging isn't in realtime. ✅
+
 If you reload the page the user is logged out.
+
 Sometimes all the messages between 2 users aren't being retrieved by the SQL command.
+
 When inside a chat the friends name and icon isn't shown.
+
 The users icon doesn't show in front of the message they sent.
 
 # Struggles
